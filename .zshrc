@@ -119,3 +119,5 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 alias ls='ls -h --color=always'
 alias ll='ls -l'
 alias la='ls -A'
+
+alias t2p='ptex2pdf -l'
