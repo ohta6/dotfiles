@@ -1,3 +1,53 @@
+""dein Scripts-----------------------------
+"if &compatible
+"  set nocompatible               " Be iMproved
+"endif
+"
+"" Required:
+""set runtimepath+=/home/ohta/.cache/dein/repos/github.com/Shougo/dein.vim
+"let s:dein_path = expand('~/.cache/dein')
+"let s:dein_repo_path = s:dein_path . '/repos/github.com/Shougo/dein.vim'
+"if &runtimepath !~# '/dein.vim'
+"  if !isdirectory(s:dein_repo_path)
+"    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_path
+"  endif
+"  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_path, ':p')
+"endif
+"
+"" Required:
+"if dein#load_state(s:dein_path)
+"  call dein#begin(s:dein_path)
+"
+"  " Let dein manage dein
+"  " Required:
+"  call dein#add(s:dein_repo_path)
+"
+"  " Add or remove your plugins here:
+"  call dein#add('Shougo/neosnippet.vim')
+"  call dein#add('Shougo/neosnippet-snippets')
+"  call dein#add('Shougo/unite.vim')
+"  call dein#add('davidhalter/jedi-vim')
+"
+"  " You can specify revision/branch/tag.
+"  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+"
+"  " Required:
+"  call dein#end()
+"  call dein#save_state()
+"endif
+"
+"" Required:
+"filetype plugin indent on
+"syntax enable
+"
+"" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
+"
+""End dein Scripts-------------------------
+
+
 " setting
 "文字コードをUFT-8に設定
 set fenc=utf-8
@@ -46,6 +96,8 @@ set title
 "set list listchars=tab:\▸\-
 " Tab文字を半角スペースにする
 set expandtab
+" 高度な自動インデント
+set smarttab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
 set tabstop=4
 " 行頭でのTab文字の表示幅
@@ -85,8 +137,9 @@ set scrolloff=5
 inoremap <silent> jj <ESC>
 
 " 編集箇所のカーソルを記憶
+
 if has("autocmd")
-  augroup redhat
+    augroup redhat
     " In text files, always limit the width of text to 78 characters
     autocmd BufRead *.txt set tw=78
     " When editing a file, always jump to the last cursor position
@@ -94,7 +147,7 @@ if has("autocmd")
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \   exe "normal! g'\"" |
     \ endif
-  augroup END
+    augroup END
 endif
 
 " ウィンドウ、タブ関係

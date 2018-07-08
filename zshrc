@@ -121,3 +121,4 @@ alias ll='ls -l'
 alias la='ls -A'
 
 alias t2p='ptex2pdf -l'
+#alias vim="$HOME/local/bin/vim -N -u $HOME/dotfiles/vimrc"
