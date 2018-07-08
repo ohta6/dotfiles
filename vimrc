@@ -25,8 +25,6 @@ set cursorline
 "set cursorcolumn
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
-" インデントはスマートインデント
-set smartindent
 " ビープ音を可視化
 set visualbell
 " 括弧入力時の対応する括弧を表示
@@ -52,6 +50,10 @@ set expandtab
 set tabstop=4
 " 行頭でのTab文字の表示幅
 set shiftwidth=4
+" インデントはスマートインデント
+set smartindent
+" 自動インデント
+set autoindent
 
 
 " 検索系
