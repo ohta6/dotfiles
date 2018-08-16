@@ -10,3 +10,6 @@ git commit -m "anything"
 git push origin master  
 # 同期
 git pull  
+# 前提環境
+vim version8
+jedi
