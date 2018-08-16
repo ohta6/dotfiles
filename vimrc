@@ -28,7 +28,7 @@ if dein#load_state(s:dein_path)
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   " You can specify revision/branch/tag.
-  call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
+  "call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
 
   " Required:
   call dein#end()
