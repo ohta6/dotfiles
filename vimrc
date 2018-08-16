@@ -1,51 +1,82 @@
-""dein Scripts-----------------------------
-"if &compatible
-"  set nocompatible               " Be iMproved
-"endif
-"
-"" Required:
-""set runtimepath+=/home/ohta/.cache/dein/repos/github.com/Shougo/dein.vim
-"let s:dein_path = expand('~/.cache/dein')
-"let s:dein_repo_path = s:dein_path . '/repos/github.com/Shougo/dein.vim'
-"if &runtimepath !~# '/dein.vim'
-"  if !isdirectory(s:dein_repo_path)
-"    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_path
-"  endif
-"  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_path, ':p')
-"endif
-"
-"" Required:
-"if dein#load_state(s:dein_path)
-"  call dein#begin(s:dein_path)
-"
-"  " Let dein manage dein
-"  " Required:
-"  call dein#add(s:dein_repo_path)
-"
-"  " Add or remove your plugins here:
-"  call dein#add('Shougo/neosnippet.vim')
-"  call dein#add('Shougo/neosnippet-snippets')
-"  call dein#add('Shougo/unite.vim')
-"  call dein#add('davidhalter/jedi-vim')
-"
-"  " You can specify revision/branch/tag.
-"  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-"
-"  " Required:
-"  call dein#end()
-"  call dein#save_state()
-"endif
-"
-"" Required:
-"filetype plugin indent on
-"syntax enable
-"
-"" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
-"
-""End dein Scripts-------------------------
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+let s:dein_path = expand('~/.cache/dein')
+let s:dein_repo_path = s:dein_path . '/repos/github.com/Shougo/dein.vim'
+
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_path)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_path
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_path, ':p')
+endif
+
+" Required:
+if dein#load_state(s:dein_path)
+  call dein#begin(s:dein_path)
+
+  " Add or remove your plugins here:
+  let g:config_dir = expand('~/.cache/dein/userconfig')
+  let s:toml       = g:config_dir . '/plugins.toml'
+  let s:lazy_toml  = g:config_dir . '/plugins_lazy.toml'
+
+  " pluginはtomlファイルに記入
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" ステータスバーの見た目
+let g:airline_theme = 'wombat'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+" unicode symbols
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+
+" NERDTreeの設定
+" 隠しファイルを表示
+let NERDTreeShowHidden = 1
+" デフォルトでツリーを表示させる
+let g:nerdtree_tabs_open_on_console_startup=1
+" 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Uniteの設定
+let g:unite_enable_start_insert=1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+
+" j,kの移動を加速度的にする
+nmap j <Plug>(accelerated_jk_gj_position)
+nmap k <Plug>(accelerated_jk_gk_position)
+
+" auto save
+let g:auto_write = 1
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
 
 
 " setting
@@ -76,7 +107,7 @@ set cursorline
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
 " ビープ音を可視化
-set visualbell
+"set visualbell
 " 括弧入力時の対応する括弧を表示
 set showmatch
 set matchpairs& matchpairs+=<:>
@@ -127,8 +158,6 @@ set clipboard=unnamed,autoselect
 " yでコピーした時にクリップボードに入る
 set guioptions+=a
 
-" シンタックスハイライト
-syntax on
 
 " スクロール送りを開始する前後の行数を指定
 set scrolloff=5
