@@ -26,7 +26,7 @@ setopt IGNOREEOF
 export LANG=ja_JP.UTF-8
 
 # パスを追加したい場合
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/local/bin:$PATH"
 
 # COLOR {{{
 # LS_COLORS
