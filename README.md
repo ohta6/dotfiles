@@ -4,6 +4,7 @@ cd ~/
 git clone https://github.com/ohta6/dotfiles.git  
 cd ./dotfiles  
 ./setup.sh  
+zshenvの内容はそれぞれの環境に合わせる  
 # 更新
 git add .  
 git commit -m "anything"  
