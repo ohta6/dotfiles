@@ -105,7 +105,7 @@ let g:quickrun_config = {
 \    "tex" :{
 \        'command' : 'latexmk',
 \        'hook/cd/directrory' : '%S:h',
-\        'exec' : '%c %s'
+\        'exec' : '%c -c %s'
 \    },
 \}
 " plugin setting end--------------------------
