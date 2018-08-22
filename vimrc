@@ -99,7 +99,7 @@ let g:quickrun_config = {
 \        "runner/vimproc/updatetime" : 60,
 \        "outputter/buffer/split" : ":botright 8sp",
 \        'outputter/error/error' : 'quickfix',
-\        'outputter/error/success' : 'buffer'
+\        'outputter/error/success' : 'buffer',
 \        'outputter/buffer/close_on_empty' : 1,
 \    },
 \    "tex" :{
@@ -115,7 +115,7 @@ let g:quickrun_config = {
 " setting
 "文字コードをUFT-8に設定
 set fenc=utf-8
-j バックアップファイルを作らない
+" バックアップファイルを作らない
 set nobackup
 " スワップファイルを作らない
 set noswapfile
