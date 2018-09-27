@@ -11,3 +11,10 @@ on_source = ['unite.vim']
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = ['python']
+
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = ['tex']
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'

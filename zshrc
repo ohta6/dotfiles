@@ -132,4 +132,7 @@ alias ll='ls -l'
 alias la='ls -A'
 
 alias t2p='ptex2pdf -l'
+
+# PATHはzshrc_localに書く
+[ -f $HOME/.zshrc_local ] && . $HOME/.zshrc_local
 #alias vim="$HOME/local/bin/vim -N -u $HOME/dotfiles/vimrc"

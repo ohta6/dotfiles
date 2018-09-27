@@ -30,6 +30,16 @@ if dein#load_state(s:dein_path)
   " You can specify revision/branch/tag.
   "call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
 
+    call dein#add('Shougo/vimproc.vim', {
+      \ 'build': {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin'  : 'make -f make_cygwin.mak',
+      \     'mac'     : 'make -f make_mac.mak',
+      \     'linux'   : 'make',
+      \     'unix'    : 'gmake',
+      \    },
+      \ })
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -38,6 +48,17 @@ endif
 " Required:
 filetype plugin indent on
 syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
+
+
+" plugin setting--------------------------
 
 " ステータスバーの見た目
 let g:airline_theme = 'wombat'
@@ -62,7 +83,7 @@ let g:unite_source_file_mru_limit = 200
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer file/new<CR>
 
 " j,kの移動を加速度的にする
 nmap j <Plug>(accelerated_jk_gj_position)
@@ -71,12 +92,24 @@ nmap k <Plug>(accelerated_jk_gk_position)
 " auto save
 let g:auto_write = 1
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+" texのコンパイルをquickrunを通してやる
+let g:quickrun_config = {
+\    "_" :{
+\        "runner" : "vimproc",
+\        "runner/vimproc/updatetime" : 60,
+\        "outputter/buffer/split" : ":botright 8sp",
+\        'outputter/error/error' : 'quickfix',
+\        'outputter/error/success' : 'buffer',
+\        'outputter/buffer/close_on_empty' : 1,
+\    },
+\    "tex" :{
+\        'command' : 'latexmk',
+\        'hook/cd/directrory' : '%S:h',
+\        'exec' : '%c -c %s'
+\    },
+\}
+" plugin setting end--------------------------
 
-"End dein Scripts-------------------------
 
 
 " setting
@@ -116,8 +149,8 @@ set laststatus=2
 " コマンドラインの補完
 set wildmode=list:longest
 " 折り返し時に表示行単位での移動できるようにする
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 " タイトルを表示
 set title
 
