@@ -73,7 +73,7 @@ chpwd() { ls -ltr --color=auto }
 
 #PROMPT="%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}@${fg[blue]}%m${reset_color}(%*%)
 #%# "
-PROMPT="(%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}) %# "
+PROMPT="(%(?.%{${fg[green]}%}.%{${fg[red]}%})%n%{${reset_color}%}) %# "
 
 # 補完後、メニュー選択モードになり左右キーで移動が出来る
 zstyle ':completion:*:default' menu select=2
