@@ -20,12 +20,14 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-#zplug load --verbose
 zplug load
 
 
-#autoload -U promptinit; promptinit
+#autoload -Uz promptinit; promptinit
 #prompt pure
+
+#autoload -Uz compinit
+#compinit
 # Ctrl+Dでログアウトしてしまうことを防ぐ
 setopt IGNOREEOF
 
